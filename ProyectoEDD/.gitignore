@@ -13,3 +13,10 @@ Release/
 *.tlog
 *.idb
 *.ipch
+
+# Archivos específicos que no quieres rastrear
+DocumentLayout.json
+VSWorkspaceState.json
+ProyectoEDO.vcproj
+ProyectoEDO.vcproj.filters
+ProyectoEDO.sln
