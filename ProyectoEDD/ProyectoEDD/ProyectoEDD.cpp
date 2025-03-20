@@ -1,6 +1,5 @@
 // ProyectoEDD.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
 //
-
 #include <iostream>
 #include <string>
 
@@ -15,6 +14,11 @@ public:
     // Constructor
     Nota(std::string f, float v, float p) : fecha(f), valor(v), ponderacion(p) {
         notaPonderada = valor * (ponderacion / 100); // Calcula la nota ponderada
+    }
+
+    // Método para mostrar la nota
+    void mostrar() {
+        std::cout << "Fecha: " << fecha << ", Nota: " << valor << ", Ponderación: " << ponderacion << "%, Nota Ponderada: " << notaPonderada << std::endl;
     }
 };
 
@@ -41,8 +45,7 @@ public:
         NodoNota* nuevoNodo = new NodoNota(nota);
         if (cabeza == nullptr) {
             cabeza = nuevoNodo;
-        }
-        else {
+        } else {
             NodoNota* temp = cabeza;
             while (temp->siguiente != nullptr) {
                 temp = temp->siguiente;
@@ -55,9 +58,7 @@ public:
     void mostrarNotas() {
         NodoNota* temp = cabeza;
         while (temp != nullptr) {
-            std::cout << "Fecha: " << temp->nota.fecha << ", Nota: " << temp->nota.valor
-                << ", Ponderación: " << temp->nota.ponderacion << "%, Nota Ponderada: "
-                << temp->nota.notaPonderada << std::endl;
+            temp->nota.mostrar();
             temp = temp->siguiente;
         }
     }
@@ -117,8 +118,7 @@ public:
         NodoMateria* nuevoNodo = new NodoMateria(materia);
         if (cabeza == nullptr) {
             cabeza = cola = nuevoNodo;
-        }
-        else {
+        } else {
             cola->siguiente = nuevoNodo;
             nuevoNodo->anterior = cola;
             cola = nuevoNodo;
@@ -130,6 +130,7 @@ public:
         NodoMateria* temp = cabeza;
         while (temp != nullptr) {
             temp->materia.mostrarNotas();
+            std::cout << std::endl; // Separador entre materias
             temp = temp->siguiente;
         }
     }
@@ -140,7 +141,7 @@ int main() {
     // Crear una lista de materias
     ListaMaterias listaMaterias;
 
-    // Crear algunas materias y agregar notas
+    // Crear materias y agregar notas
     Materia materia1("MAT-101", "Matemáticas");
     materia1.notas.agregarNota(Nota("2023-10-01", 18, 30)); // Nota 1
     materia1.notas.agregarNota(Nota("2023-10-15", 15, 20)); // Nota 2
@@ -150,9 +151,45 @@ int main() {
     materia2.notas.agregarNota(Nota("2023-10-05", 16, 40)); // Nota 1
     materia2.notas.agregarNota(Nota("2023-10-20", 14, 60)); // Nota 2
 
+    Materia materia3("QUI-101", "Química");
+    materia3.notas.agregarNota(Nota("2023-11-01", 17, 30)); // Nota 1
+    materia3.notas.agregarNota(Nota("2023-11-15", 16, 20)); // Nota 2
+    materia3.notas.agregarNota(Nota("2023-11-30", 18, 50)); // Nota 3
+
+    Materia materia4("ING-101", "Inglés");
+    materia4.notas.agregarNota(Nota("2023-09-10", 19, 25)); // Nota 1
+    materia4.notas.agregarNota(Nota("2023-09-25", 18, 25)); // Nota 2
+    materia4.notas.agregarNota(Nota("2023-10-10", 20, 50)); // Nota 3
+
+    Materia materia5("DEP-101", "Deporte");
+    materia5.notas.agregarNota(Nota("2023-09-05", 20, 40)); // Nota 1
+    materia5.notas.agregarNota(Nota("2023-09-20", 19, 30)); // Nota 2
+    materia5.notas.agregarNota(Nota("2023-10-05", 18, 30)); // Nota 3
+
+    Materia materia6("GHC-101", "Geografía, Historia y Ciudadanía");
+    materia6.notas.agregarNota(Nota("2023-08-15", 17, 30)); // Nota 1
+    materia6.notas.agregarNota(Nota("2023-08-30", 16, 20)); // Nota 2
+    materia6.notas.agregarNota(Nota("2023-09-15", 18, 50)); // Nota 3
+
+    Materia materia7("EDF-101", "Educación de la Fe");
+    materia7.notas.agregarNota(Nota("2023-08-10", 20, 40)); // Nota 1
+    materia7.notas.agregarNota(Nota("2023-08-25", 19, 30)); // Nota 2
+    materia7.notas.agregarNota(Nota("2023-09-10", 18, 30)); // Nota 3
+
+    Materia materia8("OYC-101", "Orientación y Convivencia");
+    materia8.notas.agregarNota(Nota("2023-07-15", 20, 50)); // Nota 1
+    materia8.notas.agregarNota(Nota("2023-07-30", 19, 30)); // Nota 2
+    materia8.notas.agregarNota(Nota("2023-08-15", 18, 20)); // Nota 3
+
     // Agregar materias a la lista
     listaMaterias.agregarMateria(materia1);
     listaMaterias.agregarMateria(materia2);
+    listaMaterias.agregarMateria(materia3);
+    listaMaterias.agregarMateria(materia4);
+    listaMaterias.agregarMateria(materia5);
+    listaMaterias.agregarMateria(materia6);
+    listaMaterias.agregarMateria(materia7);
+    listaMaterias.agregarMateria(materia8);
 
     // Mostrar todas las materias con sus notas
     listaMaterias.mostrarMaterias();
