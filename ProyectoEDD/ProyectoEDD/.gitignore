@@ -1,0 +1,18 @@
+# Ignorar la carpeta .vs generada por Visual Studio
+.vs/
+
+# Ignorar archivos binarios y de depuración
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+
+# Ignorar archivos de usuario de Visual Studio
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignorar archivos de configuración local
+.idea/
+.vscode/
